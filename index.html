@@ -1,868 +1,603 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>المهندس للديكورات - تصميم داخلي فاخر وتشطيبات متميزة</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Amiri:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              "brand-orange": "#D4A574",
-              "brand-gold": "#C5965F",
-              "brand-dark": "#1A1A1A",
-              "brand-light": "#F8F7F4",
-            },
-            fontFamily: {
-              display: ["Amiri", "serif"],
-              sans: ["Tajawal", "sans-serif"],
-            },
-          },
-        },
-      };
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-orange': '#D4A574',
+                        'brand-gold': '#C5965F',
+                        'brand-dark': '#1A1A1A',
+                        'brand-light': '#F8F7F4',
+                    },
+                    fontFamily: {
+                        'display': ['Amiri', 'serif'],
+                        'sans': ['Tajawal', 'sans-serif'],
+                    }
+                }
+            }
+        }
     </script>
     <style>
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        font-family: "Tajawal", sans-serif;
-      }
-      .hero-gradient {
-        background: linear-gradient(
-          135deg,
-          rgba(26, 26, 26, 0.7) 0%,
-          rgba(26, 26, 26, 0.5) 100%
-        );
-      }
-      .service-card {
-        transition: all 0.3s ease;
-      }
-      .service-card:hover {
-        transform: translateY(-8px);
-      }
-      .portfolio-item {
-        transition: all 0.4s ease;
-        overflow: hidden;
-      }
-      .portfolio-item:hover .portfolio-overlay {
-        opacity: 1;
-      }
-      .portfolio-item:hover img {
-        transform: scale(1.05);
-      }
-      .portfolio-overlay {
-        opacity: 0;
-        transition: opacity 0.4s ease;
-      }
-      .portfolio-item img {
-        transition: transform 0.4s ease;
-      }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Tajawal', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.7) 0%, rgba(26, 26, 26, 0.5) 100%);
+        }
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+        .portfolio-item {
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        .portfolio-overlay {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .portfolio-item img {
+            transition: transform 0.4s ease;
+        }
+        .social-sidebar {
+            position: fixed;
+            left: 30px;
+            bottom: 30px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            display: flex;
+            gap: 12px;
+        }
+        .social-sidebar.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            position: relative;
+        }
+        .social-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        }
+        .social-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+        .facebook-icon {
+            background: linear-gradient(135deg, #1877F2 0%, #0C63D4 100%);
+        }
+        .instagram-icon {
+            background: linear-gradient(135deg, #E1306C 0%, #C13584 50%, #833AB4 100%);
+        }
+        .tiktok-icon {
+            background: linear-gradient(135deg, #000000 0%, #69C9D0 100%);
+        }
+        
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            .social-sidebar {
+                left: 50%;
+                transform: translateX(-50%) translateY(20px);
+                bottom: 20px;
+                gap: 10px;
+            }
+            .social-sidebar.visible {
+                transform: translateX(-50%) translateY(0);
+            }
+            .social-icon {
+                width: 45px;
+                height: 45px;
+            }
+            .social-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .social-sidebar {
+                bottom: 15px;
+                gap: 8px;
+            }
+            .social-icon {
+                width: 40px;
+                height: 40px;
+            }
+            .social-icon svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
     </style>
-  </head>
-  <body class="font-sans text-gray-900 bg-white">
+</head>
+<body class="font-sans text-gray-900 bg-white">
+
+    <!-- Social Media Sidebar -->
+    <div class="social-sidebar" id="socialSidebar">
+        <a href="https://facebook.com/yourpage" target="_blank" rel="noopener noreferrer" class="social-icon facebook-icon" title="فيسبوك" aria-label="فيسبوك">
+            <svg fill="white" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+        </a>
+        <a href="https://instagram.com/yourpage" target="_blank" rel="noopener noreferrer" class="social-icon instagram-icon" title="انستغرام" aria-label="انستغرام">
+            <svg fill="white" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+        </a>
+        <a href="https://tiktok.com/@yourpage" target="_blank" rel="noopener noreferrer" class="social-icon tiktok-icon" title="تيك توك" aria-label="تيك توك">
+            <svg fill="white" viewBox="0 0 24 24">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+            </svg>
+        </a>
+    </div>
+
     <!-- Navigation -->
     <nav class="fixed w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">
-          <div class="flex items-center space-x-reverse space-x-3">
-            <div
-              class="w-12 h-12 bg-brand-dark rounded-sm flex items-center justify-center"
-            >
-              <svg
-                class="w-7 h-7 text-brand-orange"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-reverse space-x-3">
+                    <div class="w-12 h-12 bg-brand-dark rounded-sm flex items-center justify-center">
+                        <svg class="w-7 h-7 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="font-display text-xl font-bold text-brand-dark tracking-tight">المهندس</div>
+                        <div class="text-xs text-brand-orange tracking-widest">للديكورات</div>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-reverse space-x-8">
+                    <a href="#about" class="text-sm font-medium text-gray-700 hover:text-brand-orange transition-colors">من نحن</a>
+                    <a href="#services" class="text-sm font-medium text-gray-700 hover:text-brand-orange transition-colors">خدماتنا</a>
+                    <a href="#portfolio" class="text-sm font-medium text-gray-700 hover:text-brand-orange transition-colors">أعمالنا</a>
+                    <a href="#contact" class="px-6 py-2.5 bg-brand-orange text-white text-sm font-semibold rounded hover:bg-brand-gold transition-colors">احصل على عرض سعر</a>
+                </div>
+                <button class="md:hidden text-brand-dark">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
             </div>
-            <div>
-              <div
-                class="font-display text-xl font-bold text-brand-dark tracking-tight"
-              >
-                المهندس
-              </div>
-              <div class="text-xs text-brand-orange tracking-widest">
-                للديكورات
-              </div>
-            </div>
-          </div>
-          <div class="hidden md:flex items-center space-x-reverse space-x-8">
-            <a
-              href="#about"
-              class="text-sm font-medium text-gray-700 hover:text-brand-orange transition-colors"
-              >من نحن</a
-            >
-            <a
-              href="#services"
-              class="text-sm font-medium text-gray-700 hover:text-brand-orange transition-colors"
-              >خدماتنا</a
-            >
-            <a
-              href="#portfolio"
-              class="text-sm font-medium text-gray-700 hover:text-brand-orange transition-colors"
-              >أعمالنا</a
-            >
-            <a
-              href="#contact"
-              class="px-6 py-2.5 bg-brand-orange text-white text-sm font-semibold rounded hover:bg-brand-gold transition-colors"
-              >احصل على عرض سعر</a
-            >
-          </div>
-          <button class="md:hidden text-brand-dark">
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
         </div>
-      </div>
     </nav>
 
     <!-- Hero Section -->
-    <section
-      class="relative h-screen flex items-center justify-center overflow-hidden"
-    >
-      <div
-        class="absolute inset-0 bg-cover bg-center"
-        style="
-          background-image: url(&quot;https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&q=80&quot;);
-        "
-      >
-        <div class="absolute inset-0 hero-gradient"></div>
-      </div>
-      <div
-        class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
-      >
-        <div class="mb-6">
-          <div
-            class="inline-block px-4 py-2 bg-brand-orange/10 backdrop-blur-sm rounded-full"
-          >
-            <span class="text-brand-orange text-sm font-semibold tracking-wider"
-              >حلول داخلية فاخرة</span
-            >
-          </div>
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&q=80');">
+            <div class="absolute inset-0 hero-gradient"></div>
         </div>
-        <h1
-          class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
-        >
-          نصمم مساحات أنيقة<br />
-          <span class="text-brand-orange">تلهم وتبهر</span>
-        </h1>
-        <p
-          class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed"
-        >
-          حوّل رؤيتك إلى واقع مع خدمات استثنائية للديكور الداخلي والتشطيبات
-          للفلل والشقق والمساحات التجارية
-        </p>
-        <div
-          class="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <a
-            href="#portfolio"
-            class="px-8 py-4 bg-brand-orange text-white font-semibold rounded hover:bg-brand-gold transition-all shadow-lg hover:shadow-xl"
-          >
-            شاهد أعمالنا
-          </a>
-          <a
-            href="#contact"
-            class="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded border-2 border-white/30 hover:bg-white/20 transition-all"
-          >
-            طلب استشارة
-          </a>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-6">
+                <div class="inline-block px-4 py-2 bg-brand-orange/10 backdrop-blur-sm rounded-full">
+                    <span class="text-brand-orange text-sm font-semibold tracking-wider">حلول داخلية فاخرة</span>
+                </div>
+            </div>
+            <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                نصمم مساحات أنيقة<br/>
+                <span class="text-brand-orange">تلهم وتبهر</span>
+            </h1>
+            <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+                حوّل رؤيتك إلى واقع مع خدمات استثنائية للديكور الداخلي والتشطيبات للفلل والشقق والمساحات التجارية
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#portfolio" class="px-8 py-4 bg-brand-orange text-white font-semibold rounded hover:bg-brand-gold transition-all shadow-lg hover:shadow-xl">
+                    شاهد أعمالنا
+                </a>
+                <a href="#contact" class="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded border-2 border-white/30 hover:bg-white/20 transition-all">
+                    طلب استشارة
+                </a>
+            </div>
         </div>
-      </div>
-      <div
-        class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
-      >
-        <svg
-          class="w-6 h-6 text-white/50"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M19 14l-7 7m0 0l-7-7m7 7V3"
-          />
-        </svg>
-      </div>
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+        </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid md:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-block mb-4">
-              <span
-                class="text-brand-orange text-sm font-bold tracking-widest uppercase"
-                >من نحن</span
-              >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="inline-block mb-4">
+                        <span class="text-brand-orange text-sm font-bold tracking-widest uppercase">من نحن</span>
+                    </div>
+                    <h2 class="font-display text-4xl lg:text-5xl font-bold text-brand-dark mb-6 leading-tight">
+                        التميز في كل التفاصيل
+                    </h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                        المهندس للديكورات يقدم سنوات من الخبرة في تصميم مساحات داخلية راقية تجمع بين الوظائفية والجمال البصري. نحن متخصصون في خدمات التشطيب والديكور الفاخر للعقارات السكنية والتجارية.
+                    </p>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                        التزامنا بجودة الحرفية والاهتمام بالتفاصيل ورضا العملاء جعلنا اسماً موثوقاً في مجال الديكور. من المفهوم إلى الإنجاز، نضمن أن يفوق كل مشروع التوقعات.
+                    </p>
+                    <div class="grid grid-cols-3 gap-8">
+                        <div>
+                            <div class="text-4xl font-display font-bold text-brand-orange mb-2">+500</div>
+                            <div class="text-sm text-gray-600">مشروع منجز</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-display font-bold text-brand-orange mb-2">+15</div>
+                            <div class="text-sm text-gray-600">سنة خبرة</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-display font-bold text-brand-orange mb-2">100%</div>
+                            <div class="text-sm text-gray-600">رضا العملاء</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative h-[600px]">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" alt="تصميم داخلي فاخر" class="absolute inset-0 w-full h-full object-cover rounded-lg shadow-2xl">
+                </div>
             </div>
-            <h2
-              class="font-display text-4xl lg:text-5xl font-bold text-brand-dark mb-6 leading-tight"
-            >
-              التميز في كل التفاصيل
-            </h2>
-            <p class="text-gray-600 text-lg leading-relaxed mb-6">
-              المهندس للديكورات يقدم سنوات من الخبرة في تصميم مساحات داخلية
-              راقية تجمع بين الوظائفية والجمال البصري. نحن متخصصون في خدمات
-              التشطيب والديكور الفاخر للعقارات السكنية والتجارية.
-            </p>
-            <p class="text-gray-600 text-lg leading-relaxed mb-8">
-              التزامنا بجودة الحرفية والاهتمام بالتفاصيل ورضا العملاء جعلنا
-              اسماً موثوقاً في مجال الديكور. من المفهوم إلى الإنجاز، نضمن أن
-              يفوق كل مشروع التوقعات.
-            </p>
-            <div class="grid grid-cols-3 gap-8">
-              <div>
-                <div
-                  class="text-4xl font-display font-bold text-brand-orange mb-2"
-                >
-                  +500
-                </div>
-                <div class="text-sm text-gray-600">مشروع منجز</div>
-              </div>
-              <div>
-                <div
-                  class="text-4xl font-display font-bold text-brand-orange mb-2"
-                >
-                  +15
-                </div>
-                <div class="text-sm text-gray-600">سنة خبرة</div>
-              </div>
-              <div>
-                <div
-                  class="text-4xl font-display font-bold text-brand-orange mb-2"
-                >
-                  100%
-                </div>
-                <div class="text-sm text-gray-600">رضا العملاء</div>
-              </div>
-            </div>
-          </div>
-          <div class="relative h-[600px]">
-            <img
-              src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
-              alt="تصميم داخلي فاخر"
-              class="absolute inset-0 w-full h-full object-cover rounded-lg shadow-2xl"
-            />
-          </div>
         </div>
-      </div>
     </section>
 
     <!-- Services Section -->
     <section id="services" class="py-24 bg-brand-light">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <span
-            class="text-brand-orange text-sm font-bold tracking-widest uppercase"
-            >خدماتنا</span
-          >
-          <h2
-            class="font-display text-4xl lg:text-5xl font-bold text-brand-dark mt-4 mb-6"
-          >
-            حلول تصميم شاملة
-          </h2>
-          <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-            من المفهوم الأولي إلى اللمسات النهائية، نقدم خدمات ديكور وتشطيب
-            كاملة مصممة خصيصاً لأسلوبك واحتياجاتك الفريدة
-          </p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-brand-orange text-sm font-bold tracking-widest uppercase">خدماتنا</span>
+                <h2 class="font-display text-4xl lg:text-5xl font-bold text-brand-dark mt-4 mb-6">
+                    حلول تصميم شاملة
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    من المفهوم الأولي إلى اللمسات النهائية، نقدم خدمات ديكور وتشطيب كاملة مصممة خصيصاً لأسلوبك واحتياجاتك الفريدة
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-card bg-white rounded-lg p-8 shadow-sm hover:shadow-xl">
+                    <div class="w-14 h-14 bg-brand-orange/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-2xl font-semibold text-brand-dark mb-3">الديكور الداخلي</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        خدمات تصميم داخلي كاملة تحوّل المساحات بأثاث أنيق وألوان منسقة وعناصر زخرفية مصممة خصيصاً لأسلوب حياتك
+                    </p>
+                </div>
+                <div class="service-card bg-white rounded-lg p-8 shadow-sm hover:shadow-xl">
+                    <div class="w-14 h-14 bg-brand-orange/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-2xl font-semibold text-brand-dark mb-3">تشطيب الفلل والشقق</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        خدمات تشطيب فاخرة للعقارات السكنية، مع ضمان أن كل تفصيلة تلبي أعلى معايير الجودة والرقي
+                    </p>
+                </div>
+                <div class="service-card bg-white rounded-lg p-8 shadow-sm hover:shadow-xl">
+                    <div class="w-14 h-14 bg-brand-orange/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-2xl font-semibold text-brand-dark mb-3">الجبس والإضاءة</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        تصاميم أسقف جبسية مبتكرة وحلول إضاءة احترافية تخلق أجواءً مميزة وتعزز المظهر المعماري
+                    </p>
+                </div>
+                <div class="service-card bg-white rounded-lg p-8 shadow-sm hover:shadow-xl">
+                    <div class="w-14 h-14 bg-brand-orange/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-2xl font-semibold text-brand-dark mb-3">تصميم الجدران والأسقف</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        معالجات جدارية إبداعية وتصاميم أسقف باستخدام مواد فاخرة وتقنيات حديثة لتأثير بصري مذهل
+                    </p>
+                </div>
+                <div class="service-card bg-white rounded-lg p-8 shadow-sm hover:shadow-xl">
+                    <div class="w-14 h-14 bg-brand-orange/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-2xl font-semibold text-brand-dark mb-3">المساحات التجارية</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        خدمات ديكور احترافية للمكاتب والمتاجر والعقارات التجارية التي تعكس هوية علامتك التجارية
+                    </p>
+                </div>
+                <div class="service-card bg-white rounded-lg p-8 shadow-sm hover:shadow-xl">
+                    <div class="w-14 h-14 bg-brand-orange/10 rounded-lg flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-2xl font-semibold text-brand-dark mb-3">حلول ديكور متكاملة</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        إدارة شاملة للمشاريع من الاستشارة التصميمية إلى التركيب النهائي، مع ضمان تنفيذ سلس لرؤيتك
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div
-            class="service-card bg-white rounded-lg p-8 shadow-sm hover:shadow-xl"
-          >
-            <div
-              class="w-14 h-14 bg-brand-orange/10 rounded-lg flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-7 h-7 text-brand-orange"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </div>
-            <h3
-              class="font-display text-2xl font-semibold text-brand-dark mb-3"
-            >
-              الديكور الداخلي
-            </h3>
-            <p class="text-gray-600 leading-relaxed">
-              خدمات تصميم داخلي كاملة تحوّل المساحات بأثاث أنيق وألوان منسقة
-              وعناصر زخرفية مصممة خصيصاً لأسلوب حياتك
-            </p>
-          </div>
-          <div
-            class="service-card bg-white rounded-lg p-8 shadow-sm hover:shadow-xl"
-          >
-            <div
-              class="w-14 h-14 bg-brand-orange/10 rounded-lg flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-7 h-7 text-brand-orange"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                />
-              </svg>
-            </div>
-            <h3
-              class="font-display text-2xl font-semibold text-brand-dark mb-3"
-            >
-              تشطيب الفلل والشقق
-            </h3>
-            <p class="text-gray-600 leading-relaxed">
-              خدمات تشطيب فاخرة للعقارات السكنية، مع ضمان أن كل تفصيلة تلبي أعلى
-              معايير الجودة والرقي
-            </p>
-          </div>
-          <div
-            class="service-card bg-white rounded-lg p-8 shadow-sm hover:shadow-xl"
-          >
-            <div
-              class="w-14 h-14 bg-brand-orange/10 rounded-lg flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-7 h-7 text-brand-orange"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                />
-              </svg>
-            </div>
-            <h3
-              class="font-display text-2xl font-semibold text-brand-dark mb-3"
-            >
-              الجبس والإضاءة
-            </h3>
-            <p class="text-gray-600 leading-relaxed">
-              تصاميم أسقف جبسية مبتكرة وحلول إضاءة احترافية تخلق أجواءً مميزة
-              وتعزز المظهر المعماري
-            </p>
-          </div>
-          <div
-            class="service-card bg-white rounded-lg p-8 shadow-sm hover:shadow-xl"
-          >
-            <div
-              class="w-14 h-14 bg-brand-orange/10 rounded-lg flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-7 h-7 text-brand-orange"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
-                />
-              </svg>
-            </div>
-            <h3
-              class="font-display text-2xl font-semibold text-brand-dark mb-3"
-            >
-              تصميم الجدران والأسقف
-            </h3>
-            <p class="text-gray-600 leading-relaxed">
-              معالجات جدارية إبداعية وتصاميم أسقف باستخدام مواد فاخرة وتقنيات
-              حديثة لتأثير بصري مذهل
-            </p>
-          </div>
-          <div
-            class="service-card bg-white rounded-lg p-8 shadow-sm hover:shadow-xl"
-          >
-            <div
-              class="w-14 h-14 bg-brand-orange/10 rounded-lg flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-7 h-7 text-brand-orange"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
-            </div>
-            <h3
-              class="font-display text-2xl font-semibold text-brand-dark mb-3"
-            >
-              المساحات التجارية
-            </h3>
-            <p class="text-gray-600 leading-relaxed">
-              خدمات ديكور احترافية للمكاتب والمتاجر والعقارات التجارية التي تعكس
-              هوية علامتك التجارية
-            </p>
-          </div>
-          <div
-            class="service-card bg-white rounded-lg p-8 shadow-sm hover:shadow-xl"
-          >
-            <div
-              class="w-14 h-14 bg-brand-orange/10 rounded-lg flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-7 h-7 text-brand-orange"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                />
-              </svg>
-            </div>
-            <h3
-              class="font-display text-2xl font-semibold text-brand-dark mb-3"
-            >
-              حلول ديكور متكاملة
-            </h3>
-            <p class="text-gray-600 leading-relaxed">
-              إدارة شاملة للمشاريع من الاستشارة التصميمية إلى التركيب النهائي،
-              مع ضمان تنفيذ سلس لرؤيتك
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- Portfolio Section -->
     <section id="portfolio" class="py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <span
-            class="text-brand-orange text-sm font-bold tracking-widest uppercase"
-            >معرض أعمالنا</span
-          >
-          <h2
-            class="font-display text-4xl lg:text-5xl font-bold text-brand-dark mt-4 mb-6"
-          >
-            مشاريع مميزة
-          </h2>
-          <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-            استكشف مجموعة من مشاريعنا المنجزة التي تعرض التزامنا بالجودة والتميز
-            في التصميم
-          </p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-brand-orange text-sm font-bold tracking-widest uppercase">معرض أعمالنا</span>
+                <h2 class="font-display text-4xl lg:text-5xl font-bold text-brand-dark mt-4 mb-6">
+                    مشاريع مميزة
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    استكشف مجموعة من مشاريعنا المنجزة التي تعرض التزامنا بالجودة والتميز في التصميم
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="portfolio-item relative aspect-square rounded-lg overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&q=80" alt="فيلا عصرية" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="portfolio-overlay absolute inset-0 bg-brand-dark/80 flex items-center justify-center">
+                        <div class="text-center text-white p-6">
+                            <h4 class="font-display text-xl font-semibold mb-2">فيلا عصرية</h4>
+                            <p class="text-sm text-gray-300">ديكور وتشطيب متكامل</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item relative aspect-square rounded-lg overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=600&q=80" alt="شقة فاخرة" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="portfolio-overlay absolute inset-0 bg-brand-dark/80 flex items-center justify-center">
+                        <div class="text-center text-white p-6">
+                            <h4 class="font-display text-xl font-semibold mb-2">شقة فاخرة</h4>
+                            <p class="text-sm text-gray-300">جبس وإضاءة مميزة</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item relative aspect-square rounded-lg overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&q=80" alt="مكتب تجاري" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="portfolio-overlay absolute inset-0 bg-brand-dark/80 flex items-center justify-center">
+                        <div class="text-center text-white p-6">
+                            <h4 class="font-display text-xl font-semibold mb-2">مكتب تجاري</h4>
+                            <p class="text-sm text-gray-300">تصميم عصري للمساحات</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item relative aspect-square rounded-lg overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&q=80" alt="مجمع سكني" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="portfolio-overlay absolute inset-0 bg-brand-dark/80 flex items-center justify-center">
+                        <div class="text-center text-white p-6">
+                            <h4 class="font-display text-xl font-semibold mb-2">مجمع سكني</h4>
+                            <p class="text-sm text-gray-300">مشروع متعدد الوحدات</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item relative aspect-square rounded-lg overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="فندق بوتيك" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="portfolio-overlay absolute inset-0 bg-brand-dark/80 flex items-center justify-center">
+                        <div class="text-center text-white p-6">
+                            <h4 class="font-display text-xl font-semibold mb-2">فندق بوتيك</h4>
+                            <p class="text-sm text-gray-300">ديكور ضيافة راقي</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item relative aspect-square rounded-lg overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=600&q=80" alt="منزل خاص" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="portfolio-overlay absolute inset-0 bg-brand-dark/80 flex items-center justify-center">
+                        <div class="text-center text-white p-6">
+                            <h4 class="font-display text-xl font-semibold mb-2">منزل خاص</h4>
+                            <p class="text-sm text-gray-300">حلول داخلية مخصصة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div
-            class="portfolio-item relative aspect-square rounded-lg overflow-hidden group cursor-pointer"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&q=80"
-              alt="فيلا عصرية"
-              class="absolute inset-0 w-full h-full object-cover"
-            />
-            <div
-              class="portfolio-overlay absolute inset-0 bg-brand-dark/80 flex items-center justify-center"
-            >
-              <div class="text-center text-white p-6">
-                <h4 class="font-display text-xl font-semibold mb-2">
-                  فيلا عصرية
-                </h4>
-                <p class="text-sm text-gray-300">ديكور وتشطيب متكامل</p>
-              </div>
-            </div>
-          </div>
-          <div
-            class="portfolio-item relative aspect-square rounded-lg overflow-hidden group cursor-pointer"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=600&q=80"
-              alt="شقة فاخرة"
-              class="absolute inset-0 w-full h-full object-cover"
-            />
-            <div
-              class="portfolio-overlay absolute inset-0 bg-brand-dark/80 flex items-center justify-center"
-            >
-              <div class="text-center text-white p-6">
-                <h4 class="font-display text-xl font-semibold mb-2">
-                  شقة فاخرة
-                </h4>
-                <p class="text-sm text-gray-300">جبس وإضاءة مميزة</p>
-              </div>
-            </div>
-          </div>
-          <div
-            class="portfolio-item relative aspect-square rounded-lg overflow-hidden group cursor-pointer"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&q=80"
-              alt="مكتب تجاري"
-              class="absolute inset-0 w-full h-full object-cover"
-            />
-            <div
-              class="portfolio-overlay absolute inset-0 bg-brand-dark/80 flex items-center justify-center"
-            >
-              <div class="text-center text-white p-6">
-                <h4 class="font-display text-xl font-semibold mb-2">
-                  مكتب تجاري
-                </h4>
-                <p class="text-sm text-gray-300">تصميم عصري للمساحات</p>
-              </div>
-            </div>
-          </div>
-          <div
-            class="portfolio-item relative aspect-square rounded-lg overflow-hidden group cursor-pointer"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&q=80"
-              alt="مجمع سكني"
-              class="absolute inset-0 w-full h-full object-cover"
-            />
-            <div
-              class="portfolio-overlay absolute inset-0 bg-brand-dark/80 flex items-center justify-center"
-            >
-              <div class="text-center text-white p-6">
-                <h4 class="font-display text-xl font-semibold mb-2">
-                  مجمع سكني
-                </h4>
-                <p class="text-sm text-gray-300">مشروع متعدد الوحدات</p>
-              </div>
-            </div>
-          </div>
-          <div
-            class="portfolio-item relative aspect-square rounded-lg overflow-hidden group cursor-pointer"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80"
-              alt="فندق بوتيك"
-              class="absolute inset-0 w-full h-full object-cover"
-            />
-            <div
-              class="portfolio-overlay absolute inset-0 bg-brand-dark/80 flex items-center justify-center"
-            >
-              <div class="text-center text-white p-6">
-                <h4 class="font-display text-xl font-semibold mb-2">
-                  فندق بوتيك
-                </h4>
-                <p class="text-sm text-gray-300">ديكور ضيافة راقي</p>
-              </div>
-            </div>
-          </div>
-          <div
-            class="portfolio-item relative aspect-square rounded-lg overflow-hidden group cursor-pointer"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=600&q=80"
-              alt="منزل خاص"
-              class="absolute inset-0 w-full h-full object-cover"
-            />
-            <div
-              class="portfolio-overlay absolute inset-0 bg-brand-dark/80 flex items-center justify-center"
-            >
-              <div class="text-center text-white p-6">
-                <h4 class="font-display text-xl font-semibold mb-2">
-                  منزل خاص
-                </h4>
-                <p class="text-sm text-gray-300">حلول داخلية مخصصة</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- Why Choose Us Section -->
     <section class="py-24 bg-brand-dark text-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <span
-            class="text-brand-orange text-sm font-bold tracking-widest uppercase"
-            >لماذا تختارنا</span
-          >
-          <h2 class="font-display text-4xl lg:text-5xl font-bold mt-4 mb-6">
-            شريكك الموثوق في الديكور
-          </h2>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-brand-orange text-sm font-bold tracking-widest uppercase">لماذا تختارنا</span>
+                <h2 class="font-display text-4xl lg:text-5xl font-bold mt-4 mb-6">
+                    شريكك الموثوق في الديكور
+                </h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand-orange/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-semibold mb-3">مواد عالية الجودة</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        نستخدم فقط مواد فاخرة ومعتمدة لضمان المتانة والأناقة في كل مشروع
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand-orange/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-semibold mb-3">فريق خبراء</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        حرفيون ومصممون مهرة بسنوات من الخبرة في الديكور الفاخر
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand-orange/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-semibold mb-3">التسليم في الوقت المحدد</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        ملتزمون بإكمال المشاريع في الموعد المحدد دون المساس بمعايير الجودة
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand-orange/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-semibold mb-3">الاهتمام بالتفاصيل</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        تركيز دقيق على كل عنصر لضمان الكمال في التنفيذ والإنهاء
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div class="text-center">
-            <div
-              class="w-16 h-16 bg-brand-orange/10 rounded-full flex items-center justify-center mx-auto mb-6"
-            >
-              <svg
-                class="w-8 h-8 text-brand-orange"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </div>
-            <h3 class="font-display text-xl font-semibold mb-3">
-              مواد عالية الجودة
-            </h3>
-            <p class="text-gray-400 leading-relaxed">
-              نستخدم فقط مواد فاخرة ومعتمدة لضمان المتانة والأناقة في كل مشروع
-            </p>
-          </div>
-          <div class="text-center">
-            <div
-              class="w-16 h-16 bg-brand-orange/10 rounded-full flex items-center justify-center mx-auto mb-6"
-            >
-              <svg
-                class="w-8 h-8 text-brand-orange"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>
-            </div>
-            <h3 class="font-display text-xl font-semibold mb-3">فريق خبراء</h3>
-            <p class="text-gray-400 leading-relaxed">
-              حرفيون ومصممون مهرة بسنوات من الخبرة في الديكور الفاخر
-            </p>
-          </div>
-          <div class="text-center">
-            <div
-              class="w-16 h-16 bg-brand-orange/10 rounded-full flex items-center justify-center mx-auto mb-6"
-            >
-              <svg
-                class="w-8 h-8 text-brand-orange"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </div>
-            <h3 class="font-display text-xl font-semibold mb-3">
-              التسليم في الوقت المحدد
-            </h3>
-            <p class="text-gray-400 leading-relaxed">
-              ملتزمون بإكمال المشاريع في الموعد المحدد دون المساس بمعايير الجودة
-            </p>
-          </div>
-          <div class="text-center">
-            <div
-              class="w-16 h-16 bg-brand-orange/10 rounded-full flex items-center justify-center mx-auto mb-6"
-            >
-              <svg
-                class="w-8 h-8 text-brand-orange"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-                />
-              </svg>
-            </div>
-            <h3 class="font-display text-xl font-semibold mb-3">
-              الاهتمام بالتفاصيل
-            </h3>
-            <p class="text-gray-400 leading-relaxed">
-              تركيز دقيق على كل عنصر لضمان الكمال في التنفيذ والإنهاء
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- CTA Section -->
     <section id="contact" class="py-24 bg-brand-light">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2
-          class="font-display text-4xl lg:text-5xl font-bold text-brand-dark mb-6"
-        >
-          هل أنت مستعد لتحويل مساحتك؟
-        </h2>
-        <p
-          class="text-gray-600 text-lg mb-10 max-w-2xl mx-auto leading-relaxed"
-        >
-          دعنا نناقش مشروعك ونخلق مساحة تعكس رؤيتك. فريقنا جاهز لإحياء أفكارك
-          بحرفية وتصميم استثنائي
-        </p>
-        <div
-          class="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <a
-            href="#"
-            class="px-8 py-4 bg-brand-orange text-white font-semibold rounded hover:bg-brand-gold transition-all shadow-lg hover:shadow-xl"
-          >
-            حدد موعد استشارة
-          </a>
-          <a
-            href="#"
-            class="px-8 py-4 bg-white text-brand-dark font-semibold rounded border-2 border-gray-300 hover:border-brand-orange hover:text-brand-orange transition-all"
-          >
-            اطلب عرض سعر
-          </a>
-        </div>
-        <div class="mt-12 pt-12 border-t border-gray-300">
-          <div
-            class="flex flex-col md:flex-row items-center justify-center gap-8 text-gray-600"
-          >
-            <div class="flex items-center gap-3">
-              <svg
-                class="w-5 h-5 text-brand-orange"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                />
-              </svg>
-              <span class="font-medium" dir="ltr">+20 123 456 7890</span>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-display text-4xl lg:text-5xl font-bold text-brand-dark mb-6">
+                هل أنت مستعد لتحويل مساحتك؟
+            </h2>
+            <p class="text-gray-600 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+                دعنا نناقش مشروعك ونخلق مساحة تعكس رؤيتك. فريقنا جاهز لإحياء أفكارك بحرفية وتصميم استثنائي
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#" class="px-8 py-4 bg-brand-orange text-white font-semibold rounded hover:bg-brand-gold transition-all shadow-lg hover:shadow-xl">
+                    حدد موعد استشارة
+                </a>
+                <a href="#" class="px-8 py-4 bg-white text-brand-dark font-semibold rounded border-2 border-gray-300 hover:border-brand-orange hover:text-brand-orange transition-all">
+                    اطلب عرض سعر
+                </a>
             </div>
-            <div class="flex items-center gap-3">
-              <svg
-                class="w-5 h-5 text-brand-orange"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
-              <span class="font-medium" dir="ltr"
-                >info@almohandsdecorations.com</span
-              >
+            <div class="mt-12 pt-12 border-t border-gray-300">
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8 text-gray-600">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                        </svg>
+                        <span class="font-medium" dir="ltr">+20 123 456 7890</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        <span class="font-medium" dir="ltr">info@almohandsdecorations.com</span>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-brand-dark text-white py-12">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-          <div class="flex items-center space-x-reverse space-x-3 mb-6 md:mb-0">
-            <div
-              class="w-12 h-12 bg-white/10 rounded-sm flex items-center justify-center"
-            >
-              <svg
-                class="w-7 h-7 text-brand-orange"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-reverse space-x-3 mb-6 md:mb-0">
+                    <div class="w-12 h-12 bg-white/10 rounded-sm flex items-center justify-center">
+                        <svg class="w-7 h-7 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="font-display text-lg font-bold tracking-tight">المهندس</div>
+                        <div class="text-xs text-brand-orange tracking-widest">للديكورات</div>
+                    </div>
+                </div>
+                <div class="flex gap-6 text-sm text-gray-400">
+                    <a href="#about" class="hover:text-brand-orange transition-colors">من نحن</a>
+                    <a href="#services" class="hover:text-brand-orange transition-colors">خدماتنا</a>
+                    <a href="#portfolio" class="hover:text-brand-orange transition-colors">أعمالنا</a>
+                    <a href="#contact" class="hover:text-brand-orange transition-colors">اتصل بنا</a>
+                </div>
             </div>
-            <div>
-              <div class="font-display text-lg font-bold tracking-tight">
-                المهندس
-              </div>
-              <div class="text-xs text-brand-orange tracking-widest">
-                للديكورات
-              </div>
+            <div class="mt-8 pt-8 border-t border-white/10 text-center text-sm text-gray-500">
+                <p>© 2026 المهندس للديكورات. جميع الحقوق محفوظة.</p>
             </div>
-          </div>
-          <div class="flex gap-6 text-sm text-gray-400">
-            <a href="#about" class="hover:text-brand-orange transition-colors"
-              >من نحن</a
-            >
-            <a
-              href="#services"
-              class="hover:text-brand-orange transition-colors"
-              >خدماتنا</a
-            >
-            <a
-              href="#portfolio"
-              class="hover:text-brand-orange transition-colors"
-              >أعمالنا</a
-            >
-            <a href="#contact" class="hover:text-brand-orange transition-colors"
-              >اتصل بنا</a
-            >
-          </div>
         </div>
-        <div
-          class="mt-8 pt-8 border-t border-white/10 text-center text-sm text-gray-500"
-        >
-          <p>© 2026 المهندس للديكورات. جميع الحقوق محفوظة.</p>
-        </div>
-      </div>
     </footer>
-  </body>
+
+    <script>
+        // Social Sidebar Scroll Animation with Debounce
+        let scrollTimeout;
+        const socialSidebar = document.getElementById('socialSidebar');
+        
+        function handleScroll() {
+            const scrollPosition = window.scrollY || window.pageYOffset;
+            const windowHeight = window.innerHeight;
+            
+            // Show sidebar after scrolling 200px or 20% of viewport height
+            const triggerPoint = Math.min(200, windowHeight * 0.2);
+            
+            if (scrollPosition > triggerPoint) {
+                socialSidebar.classList.add('visible');
+            } else {
+                socialSidebar.classList.remove('visible');
+            }
+        }
+        
+        // Debounced scroll handler for better performance
+        window.addEventListener('scroll', function() {
+            if (scrollTimeout) {
+                window.cancelAnimationFrame(scrollTimeout);
+            }
+            scrollTimeout = window.requestAnimationFrame(function() {
+                handleScroll();
+            });
+        }, { passive: true });
+        
+        // Initial check on page load
+        handleScroll();
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Track social media clicks (optional analytics)
+        document.querySelectorAll('.social-icon').forEach(icon => {
+            icon.addEventListener('click', function(e) {
+                const platform = this.title;
+                console.log('Social media click:', platform);
+                // Add your analytics tracking here if needed
+            });
+        });
+    </script>
+
+</body>
 </html>
